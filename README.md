@@ -7,7 +7,7 @@
 <a href="https://www.youtube.com/playlist?list=PL4C2AmBC9jOZxm8Bi7NrJS-kP_8vZzRJt" target="_blank">유튜브 동영상 (강의 다시보기)</a>
 
 ### 학습 자료
-<a href="https://wwwaloha.oopy.io/dcf77d7d-ab00-4620-9fc3-81117af6d25f" target="_blank">유튜브 동영상 (강의 다시보기)</a>
+<a href="https://wwwaloha.oopy.io/dcf77d7d-ab00-4620-9fc3-81117af6d25f" target="_blank">학습자료(우피)</a>
 
 ## 실습
 <img src="https://img.shields.io/badge/JSP-007396?style=flat&logo=Java&logoColor=white">
