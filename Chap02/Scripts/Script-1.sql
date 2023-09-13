@@ -1,0 +1,1 @@
+SELECT * FROM product WHERE product_id = 'P1001';
