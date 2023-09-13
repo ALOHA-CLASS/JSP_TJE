@@ -10,7 +10,7 @@
 <a href="https://wwwaloha.oopy.io/dcf77d7d-ab00-4620-9fc3-81117af6d25f" target="_blank">유튜브 동영상 (강의 다시보기)</a>
 
 ## 실습
-<img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white">
+<img src="https://img.shields.io/badge/JSP-007396?style=flat&logo=Java&logoColor=white">
 
 | Chapter | Info |
 | ------ | ------ |
