@@ -1,7 +1,7 @@
 # JSP
 더조은아카데미 JSP 웹 프로그래밍 실습
 <br>
-- <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white">
+- <img src="https://img.shields.io/badge/JSP-007396?style=flat&logo=Java&logoColor=white">
 
 ### 강의 다시보기
 <a href="https://www.youtube.com/playlist?list=PL4C2AmBC9jOZxm8Bi7NrJS-kP_8vZzRJt" target="_blank">유튜브 동영상 (강의 다시보기)</a>
