@@ -28,7 +28,6 @@
 				}
 				out.print("</td></tr>");
 			}
-		
 		%>
 	</table>
 </body>
