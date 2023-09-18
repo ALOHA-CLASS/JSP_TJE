@@ -10,6 +10,8 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class InitParamFilter implements Filter {
 	private FilterConfig filterConfig = null;
@@ -41,12 +43,17 @@ public class InitParamFilter implements Filter {
 		else {
 			message = "로그인 실패했습니다.";
 			// 관리자 계정 admin/1234 가 일치하지 않으면 메인화면으로 이동
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/main.jsp");
-			dispatcher.forward(request, response);
+			
+			// 포워드
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/main.jsp");
+//			dispatcher.forward(request, response);
+			
+			// 리다이렉트
+			String root = ((HttpServletRequest) request).getContextPath();
+			((HttpServletResponse) response).sendRedirect(root);
 		}
 
 		writer.println(message);
-
 		
 		filterChain.doFilter(request, response);
 	}
