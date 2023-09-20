@@ -168,7 +168,7 @@ public class ProductRepository extends JDBConnection {
 	public int delete(String productId) {
 		
 		int result = 0;
-		// [NEW] - file 컬럼 추가
+		
 		String sql = " DELETE FROM product "
 				   + " WHERE product_id = ? ";
 		

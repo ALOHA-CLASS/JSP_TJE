@@ -11,8 +11,7 @@
 	request.setCharacterEncoding("UTF-8");
  
 	// [NEW] - 파일 업로드 추가 
-	// String path = "E:\\TJE\\UPLOAD";
-	String path = "E:\\TJE\\JSP\\Chap08\\src\\main\\webapp\\static\\img";
+	String path = "E:\\TJE\\UPLOAD";
 	
 	DiskFileUpload upload = new DiskFileUpload();
 	

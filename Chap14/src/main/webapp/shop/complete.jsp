@@ -32,7 +32,9 @@
 		}
 		
 		// 주문 완료 후, 장바구니 목록 전체 삭제 (session 만료)
-		session.invalidate();
+		// session.invalidate();
+		session.setAttribute("cartList", null);
+		
 		
 		// 배송 정보를 저장한 쿠키는 삭제
 		if( cookies != null ) {
