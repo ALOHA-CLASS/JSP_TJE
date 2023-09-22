@@ -44,19 +44,10 @@
 	<jsp:include page="/layout/header.jsp" />
 	<div class="px-4 py-5 my-5 text-center">
 		<h1 class="display-5 fw-bold text-body-emphasis">배송 정보</h1>
-		<div class="col-lg-6 mx-auto">
-			<p class="lead mb-4">Shop 쇼핑몰 입니다.</p>
-			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-					
-				<!-- a 태그 버튼 -->
-				<a href="<%= root %>/shop/products.jsp" class="btn btn-primary btn-lg px-4 gap-3">상품목록</a>
-				<button type="button" class="btn btn-outline-secondary btn-lg px-4">로그인</button>
-			</div>
-		</div>
 	</div>
 	
 	<!-- 배송 정보 입력 -->
-	<div class="container mb-5 p-4">
+	<div class="container shop mb-5 p-4">
 		<form action="ship_pro.jsp" class="form-horizontal" method="post">
 			<input type="hidden" name="cartId" value="<%= request.getParameter("cartId") %>" />
 			<div class="input-group mb-3 row">
@@ -83,6 +74,8 @@
 				<label class="input-group-text col-md-2" id="">주소</label>
 				<input type="text" class="form-control col-md-10" name="addressName"
 						value="<%= ship_addressName %>">
+			</div>
+			
 			</div>
 			
 			<!-- 버튼 영역 -->

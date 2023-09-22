@@ -18,7 +18,7 @@
 	</div>
 	
 	<!-- 로그인 영역 -->
-	<main class="form-signin w-100 m-auto" style="max-width: 330px;">
+	<main class="form-signin login-box w-100 m-auto">
 	  <form action="login_pro.jsp" method="post">
 	    <div class="form-floating">
 	      <input type="text" class="form-control" id="floatingInput" name="id" placeholder="아이디">
@@ -49,8 +49,11 @@
 	    		}
 	    	%>
 	    </p>
-	    <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
-	    <p class="mt-5 mb-3 text-body-secondary">© 2024</p>
+	    
+	    <div class="d-grid gap-2">
+		    <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
+		    <a href="<%= root %>/user/join.jsp" class="btn btn-success w-100 py-2">회원가입</a>
+	    </div>
 	  </form>
 	</main>
 	

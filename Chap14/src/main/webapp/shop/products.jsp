@@ -46,9 +46,9 @@
 							<h3 class="text-center"><%= product.getName() %></h3>
 							<p><%= product.getDescription() %></p>
 							<p class="text-end price">₩ <%= product.getUnitPrice() %></p>
-							<p class="d-flex justify-content-end">
-								<a href="./product.jsp?id=<%= product.getProductId() %>"
-								   class="btn btn-primary">상세 정보</a>
+							<p class="d-flex justify-content-between">
+								<a href="./cart_pro.jsp?id=<%= product.getProductId() %>" class="btn btn-outline-primary"><i class="material-symbols-outlined">shopping_bag</i></a>
+								<a href="./product.jsp?id=<%= product.getProductId() %>" class="btn btn-outline-primary">상세 정보</a>
 							</p>
 						</div>						
 					</div>

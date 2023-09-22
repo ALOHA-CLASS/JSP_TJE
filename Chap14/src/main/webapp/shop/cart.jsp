@@ -31,13 +31,12 @@
 					
 				<!-- a 태그 버튼 -->
 				<a href="<%= root %>/shop/products.jsp" class="btn btn-primary btn-lg px-4 gap-3">상품목록</a>
-				<button type="button" class="btn btn-outline-secondary btn-lg px-4">로그인</button>
 			</div>
 		</div>
 	</div>
 	
 	<!-- 장바구니 영역 -->
-	<div class="container">
+	<div class="container order">
 		<!-- 장바구니 목록 -->
 		<table class="table table-striped table-hover table-bordered text-center align-middle">
 			<thead>

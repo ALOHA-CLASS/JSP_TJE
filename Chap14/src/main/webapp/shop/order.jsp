@@ -50,22 +50,10 @@
 	<jsp:include page="/layout/header.jsp" />
 	<div class="px-4 py-5 my-5 text-center">
 		<h1 class="display-5 fw-bold text-body-emphasis">주문 정보</h1>
-		<div class="col-lg-6 mx-auto">
-			<p class="lead mb-4">Shop 쇼핑몰 입니다.</p>
-			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-					
-				<!-- a 태그 버튼 -->
-				<a href="<%= root %>/shop/products.jsp" class="btn btn-primary btn-lg px-4 gap-3">상품목록</a>
-				<button type="button" class="btn btn-outline-secondary btn-lg px-4">로그인</button>
-			</div>
-		</div>
 	</div>
 	
 	<!-- 주문 확인 영역 -->
-	<div class="container mb-5">
-		<div class="text-center">
-			<h1>영수증</h1>
-		</div>
+	<div class="container order mb-5">
 		
 		<!-- 배송정보 -->
 		<div class="ship-box">
