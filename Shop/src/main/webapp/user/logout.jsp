@@ -3,7 +3,7 @@
 <%	
 
 	// 아이디 저장, 자동 로그인 쿠키 삭제
-	Cookie cookieRememberId = new Cookie("rememberId", "" );
+	// Cookie cookieRememberId = new Cookie("rememberId", "" );
 	Cookie cookieRememberMe = new Cookie("rememberMe", "" );
 	Cookie cookieToken = new Cookie("token", "" );
 	cookieRememberMe.setPath("/");
@@ -15,7 +15,7 @@
 	session.invalidate();
 	
 	// 쿠키 전달
-	response.addCookie(cookieRememberId);
+	// response.addCookie(cookieRememberId);
 	response.addCookie(cookieRememberMe);
 	response.addCookie(cookieToken);
 	response.sendRedirect(request.getContextPath());

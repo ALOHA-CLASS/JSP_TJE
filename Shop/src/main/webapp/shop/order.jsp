@@ -47,6 +47,14 @@
 		List<Product> cartList = (List<Product>) session.getAttribute("cartList");
 		if( cartList == null ) cartList = new ArrayList<Product>();
 		
+		// 로그인 여부
+		String loginId = (String) session.getAttribute("loginId");
+		String order_type = "비회원 주문";
+		boolean login = false;
+		if( loginId != null && !loginId.equals("") ) { 
+			login = true;
+			order_type = "회원 주문";
+		}
 	%>
 	
 	<jsp:include page="/layout/header.jsp" />
@@ -56,10 +64,14 @@
 	
 	<!-- 주문 확인 영역 -->
 	<div class="container order mb-5">
-		
+		<form action="complete.jsp" method="post">
 		<!-- 배송정보 -->
 		<div class="ship-box">
 			<table class="table ">
+				<tr>
+					<td>주문 형태 :</td>
+					<td><%= order_type %></td>
+				</tr>
 				<tr>
 					<td>성 명 :</td>
 					<td><%= ship_name %></td>
@@ -80,6 +92,18 @@
 					<td>전화번호 :</td>
 					<td><%= ship_phone %></td>
 				</tr>
+				<%
+					if( !login ) {
+				%>
+				<tr>
+					<td>주문 비밀번호 :</td>
+					<td>
+						<input type="password" class="form-control" name="orderPw" >
+					</td>
+				</tr>
+				<%
+					}
+				%>
 			</table>
 		</div>
 		
@@ -108,7 +132,7 @@
 						<td><%= product.getUnitPrice() %></td>			
 						<td><%= product.getQuantity() %></td>			
 						<td><%= total %></td>			
-						<td><a href="" class="btn btn-danger">삭제</a></td>			
+						<td></td>			
 					</tr>
 					<%
 						}
@@ -145,15 +169,13 @@
 				<a href="" class="btn btn-lg btn-danger">취소</a>				
 			</div>
 			<div class="item">
-				<a href="complete.jsp" class="btn btn-lg btn-primary">주문완료</a>				
+				<input type="hidden" name="login" value="<%= login %>" />
+				<input type="hidden" name="totalPrice" value="<%= sum %>" />
+				<input type="submit" class="btn btn-lg btn-primary" value="주문완료" />	
 			</div>
 		</div>
-	
+		</form>
 	</div>
-	
-	
-	
-	
 	
 	<jsp:include page="/layout/footer.jsp" />
 	<jsp:include page="/layout/script.jsp" />

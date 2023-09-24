@@ -54,7 +54,7 @@
 		list.add(product);				// 장바구니 목록에 신규 상품 추가
 	}
 	// out.print("장바구니 처리");
-	// 상품 상세 페이지로 이동
-	response.sendRedirect(referer + "?id=" + productId);
+	// 상품 목록 페이지로 이동
+	response.sendRedirect("products.jsp");
 
 %>

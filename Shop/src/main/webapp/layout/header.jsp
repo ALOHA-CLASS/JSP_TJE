@@ -35,16 +35,35 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="<%= root %>/user/join.jsp">회원가입</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="<%= root %>/user/order.jsp">주문내역</a>
+        </li>
         <%
        		} else {
         %>
         <!-- 로그인 시 -->
+<!--         <li class="nav-item"> -->
+<%--           <a class="nav-link" aria-current="page" href="<%= root %>/user/update.jsp"><%= loginId %></a> --%>
+<!--         </li> -->
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="<%= root %>/user/update.jsp"><%= loginId %></a>
+        <div class="dropdown">
+	      <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+	        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+	        <strong><%= loginId %></strong>
+	      </a>
+	      <ul class="dropdown-menu text-small shadow">
+	        <li><a class="dropdown-item" href="<%= root %>/user/update.jsp">회원정보 수정</a></li>
+	        <li><a class="dropdown-item" href="<%= root %>/user/order.jsp">주문내역</a></li>
+	        <li><hr class="dropdown-divider"></li>
+	        <li><a class="dropdown-item" href="<%= root %>/user/logout.jsp">로그아웃</a></li>
+	      </ul>
+	    </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="<%= root %>/user/logout.jsp">로그아웃</a>
-        </li>
+        
+        
+<!--         <li class="nav-item"> -->
+<%--           <a class="nav-link" aria-current="page" href="<%= root %>/user/logout.jsp">로그아웃</a> --%>
+<!--         </li> -->
         <%
         	}
         %>

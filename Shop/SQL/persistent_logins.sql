@@ -1,10 +1,9 @@
--- joeun.persistent_logins definition
-
+-- 자동 로그인 테이블
 CREATE TABLE `persistent_logins` (
-  `p_no` int NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `p_no` int NOT NULL AUTO_INCREMENT COMMENT '자동 로그인 번호',
+  `user_id` varchar(255) NOT NULL COMMENT '회원 아이디',
+  `token` varchar(255) NOT NULL COMMENT '토큰',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록일자',
   PRIMARY KEY (`p_no`),
   UNIQUE KEY `unique_token` (`token`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) COMMENT '자동 로그인';

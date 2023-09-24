@@ -17,16 +17,21 @@ public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private String productId;
-	private String name;
-	private Integer unitPrice;
-	private String description;
-	private String manufacturer;
-	private String category;
-	private long unitsInStock;
-	private String condition;
-	private String file;		// 파일 경로 변수 추가
-	private int quantity;		// [NEW] 장바구니 개수 
+	private String productId;		// 상품ID
+	private String name;			// 상품명
+	private Integer unitPrice;		// 가격(단가)
+	private String description;		// 설명
+	private String manufacturer;	// 제조 업체
+	private String category;		// 카테고리
+	private long unitsInStock;		// 재고 수
+	private String condition;		// 상태
+	private String file;			// 파일 경로 변수 추가
+	private int quantity;			// 장바구니 개수 
+
+	// 
+	private String userId;			// 회원ID
+	private int orderNo;			// 주문번호
+	private String type;			// 입출고 타입
 	
 	public Product() {
 		
@@ -117,13 +122,38 @@ public class Product implements Serializable {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public int getOrderNo() {
+		return orderNo;
+	}
+
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", name=" + name + ", unitPrice=" + unitPrice + ", description="
 				+ description + ", manufacturer=" + manufacturer + ", category=" + category + ", unitsInStock="
-				+ unitsInStock + ", condition=" + condition + ", file=" + file + ", quantity=" + quantity + "]";
+				+ unitsInStock + ", condition=" + condition + ", file=" + file + ", quantity=" + quantity + ", userId="
+				+ userId + ", orderNo=" + orderNo + ", type=" + type + "]";
 	}
-
+	
 
 }

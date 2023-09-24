@@ -124,7 +124,6 @@ public class ProductRepository extends JDBConnection {
 		System.out.println( product );
 		
 		int result = 0;
-		// [NEW] - file 컬럼 추가
 		String sql = " UPDATE product  "
 				   + "    SET name = ? "
 				   + "		 ,unit_price = ? "
@@ -137,6 +136,19 @@ public class ProductRepository extends JDBConnection {
 				   + " WHERE product_id = ? ";
 		
 		int no = 1;
+		
+		long unit = 0;
+		
+		// 입고
+		if( product.getType().equals("IN") ) {
+			unit = product.getUnitsInStock() + product.getQuantity();
+		}
+		// 출고
+		if( product.getType().equals("OUT") ) {
+			unit = product.getUnitsInStock() - product.getQuantity();
+		}
+		product.setUnitsInStock(unit);
+		
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setString(no++, product.getName());

@@ -12,7 +12,7 @@
 	<% 
 		String root = request.getContextPath(); 
 		
-		// 쿠키에 저장된 주문정보 불러오기
+		// 쿠키에 저장된 배송정보 불러오기
 		String ship_cartId = "";
 		String ship_name = "";
 		String ship_date = "";

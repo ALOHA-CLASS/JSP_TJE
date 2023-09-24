@@ -29,7 +29,7 @@ public class JDBConnection {
 			String url = "jdbc:mysql://localhost:3306/joeun?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false";
 //			String url = "jdbc:mysql://192.168.30.119:3306/joeun?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false";
 			String id = "joeun";
-			String pw = "123456";
+			String pw = "12345678";
 			
 			// 자바 프로그램에서 JDBC 드라이버를 연결시켜주는 클래스
 			// getConnection() 메소드로 DB에 연결 요청하고 생성된 Connection 객체를 반환받는다.

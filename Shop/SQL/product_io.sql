@@ -1,5 +1,4 @@
--- joeun.product_io definition
-
+-- 상품 입출고 테이블
 CREATE TABLE `product_io` (
   `io_no` int NOT NULL AUTO_INCREMENT COMMENT '입출고번호',
   `product_id` varchar(100) NOT NULL COMMENT '상품아이디',
@@ -13,4 +12,4 @@ CREATE TABLE `product_io` (
   KEY `product_id_FK_1` (`order_no`),
   CONSTRAINT `product_id_FK` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
   CONSTRAINT `product_id_FK_1` FOREIGN KEY (`order_no`) REFERENCES `order` (`order_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='상품 입출고';
+) COMMENT='상품 입출고';

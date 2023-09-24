@@ -17,6 +17,7 @@
 		// 장바구니 목록을 세션에서 가져오기
 		List<Product> cartList = (List<Product>) session.getAttribute("cartList");
 		if( cartList == null ) cartList = new ArrayList<Product>();
+		int cartCount = cartList.size();
 		
 		// 세션ID : 고유한 식별 정보 긴 문자열로 표현
 		String cartId = session.getId();
@@ -26,12 +27,7 @@
 	<div class="px-4 py-5 my-5 text-center">
 		<h1 class="display-5 fw-bold text-body-emphasis">장바구니</h1>
 		<div class="col-lg-6 mx-auto">
-			<p class="lead mb-4">Shop 쇼핑몰 입니다.</p>
-			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-					
-				<!-- a 태그 버튼 -->
-				<a href="<%= root %>/shop/products.jsp" class="btn btn-primary btn-lg px-4 gap-3">상품목록</a>
-			</div>
+			<p class="lead mb-4">장바구니 목록 입니다.</p>
 		</div>
 	</div>
 	
@@ -86,7 +82,7 @@
 					<td></td>
 					<td></td>
 					<td>총액</td>
-					<td><%= sum %></td>
+					<td id="cart-sum"><%= sum %></td>
 					<td></td>
 				</tr>
 				<%
@@ -97,13 +93,36 @@
 	
 		<!-- 버튼 영역 -->
 		<div class="d-flex justify-content-between align-items-center p-3">
-			<a href="removeCart.jsp?cartId=<%= cartId %>" class="btn btn-lg btn-danger ">삭제하기</a>
-			<a href="ship.jsp?cartId=<%= cartId %>" class="btn btn-lg btn-primary">주문하기</a>
+			<a href="removeCart.jsp?cartId=<%= cartId %>" class="btn btn-lg btn-danger ">전체삭제</a>
+<%-- 			<a href="ship.jsp?cartId=<%= cartId %>" class="btn btn-lg btn-primary">주문하기</a> --%>
+			<a href="javascript:;" class="btn btn-lg btn-primary" onclick="order()">주문하기</a>
 		</div>
 	</div>
 	
 	<jsp:include page="/layout/footer.jsp" />
 	<jsp:include page="/layout/script.jsp" />
+	
+	<script>
+		let cartId = '<%= cartId %>'
+		let cartCount = '<%= cartCount %>'
+		let cartSum = document.getElementById('cart-sum')
+		
+		function order() {
+			if( cartCount == 0 ) {
+				alert('장바구니에 담긴 상품이 없습니다.')
+				return
+			}
+			let msg = '총 ' + cartCount + '개의 상품을 주문합니다. \n총 주문금액 : ' + cartSum.textContent
+			let check = confirm(msg)
+			if( check ) {
+				location.href = 'ship.jsp?cartId=' + cartId
+			}
+			
+		}
+		
+		
+	
+	</script>
 </body>
 </html>
 

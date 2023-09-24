@@ -42,6 +42,18 @@ body {
 }
 
 
+/* 마이 페이지 */
+.mypage {
+	position: relative;
+	min-height: calc(100vh - 72px);
+}
+
+.mypage .sidebar {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+
 /* 입력 폼 반응형 */
 /* 768px 이하 화면 크기에 대한 스타일 */
 @media (max-width: 768px) {
