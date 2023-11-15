@@ -11,7 +11,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +21,7 @@ import shop.dto.PersistentLogin;
  * Servlet Filter implementation class LoginFilter
  */
 @WebFilter("/LoginFilter")
-public class LoginFilter extends HttpFilter implements Filter {
+public class LoginFilter implements Filter {
 	
 	Cookie[] cookies;
 	UserRepository userDAO;

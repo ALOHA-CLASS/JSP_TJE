@@ -3,18 +3,18 @@
 <%@page import="shop.dto.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+	String root = request.getContextPath(); 
+	String loginId = (String) session.getAttribute("loginId");	
+%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Shop</title>
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
-	<% 
-		String root = request.getContextPath(); 
-		String loginId = (String) session.getAttribute("loginId");	
-	%>
 	
 	<jsp:include page="/layout/header.jsp" />
 	<div class="px-4 py-5 my-5 text-center">

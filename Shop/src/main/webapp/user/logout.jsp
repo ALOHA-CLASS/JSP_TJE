@@ -18,5 +18,5 @@
 	// response.addCookie(cookieRememberId);
 	response.addCookie(cookieRememberMe);
 	response.addCookie(cookieToken);
-	response.sendRedirect(request.getContextPath());
+	response.sendRedirect(request.getContextPath() + "/");
 %>

@@ -4,7 +4,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Shop</title>
+	
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
@@ -37,7 +38,7 @@
 		%>
 		<h1 class="text-center"><%= text %></h1>
 		<div class="btn-box d-flex justify-content-center p-5">
-			<a href="<%= request.getContextPath() %>" class="btn btn-lg btn-primary">메인 화면</a>
+			<a href="<%= request.getContextPath() %>/" class="btn btn-lg btn-primary">메인 화면</a>
 		</div>
 	</div>
 	

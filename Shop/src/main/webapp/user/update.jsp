@@ -6,7 +6,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Shop</title>
+	
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
@@ -15,7 +16,13 @@
 		String loginId = (String) session.getAttribute("loginId");
 		
 		if( loginId == null || loginId.equals("") ) {
-			response.sendRedirect(root);
+			response.sendRedirect(root + "/");
+		}
+		
+		boolean login = false;
+		if( loginId != null && !loginId.isEmpty() ) {
+			// response.sendRedirect(root + "/");
+			login = true;
 		}
 		
 		UserRepository userDAO = new UserRepository();
@@ -23,20 +30,35 @@
 		
 		// 이메일 : 아이디@도메인 분리
 		String mail = loginUser.getMail();
-		String[] email = mail.split("@");
+		String[] temp = {"",""};
+		String[] email = (mail != null && mail.length() > 0) ? mail.split("@") : temp;
 		String email1 = email[0];
 		String email2 = email[1];
 		
 		// 생일 : 연/월/일 분리
-		String[] birth = loginUser.getBirth().split("/");
+		String birthStr = loginUser.getBirth();
+		String[] temp2 = {"","",""};
+		String[] birth = (birthStr != null && !birthStr.isEmpty() && birthStr.contains("/") ) ? birthStr.split("/") : temp2;
 		String year = "";
 		String month = "";
 		String day = "";
-		if( birth.length > 0 ) {
+		if( birth != null && birth.length == 3 ) {
 			year = birth[0];
 			month = birth[1];
 			day = birth[2];
+		} else {
+			year = "";
+			month = "";
+			day  = "";
 		}
+		
+		String phone = loginUser.getPhone();
+		phone =	phone == null ? "" : phone;
+		loginUser.setPhone(phone);
+		
+		String address = loginUser.getAddress();
+		address = address == null ? "" : address;
+		loginUser.setAddress(address);
 	%>
 	
 	<jsp:include page="/layout/header.jsp" />
@@ -45,11 +67,19 @@
 		<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
 			<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary">
 			    <ul class="nav nav-pills flex-column mb-auto">
+			      <!-- 로그인 시 -->
+			      <% if( login ) { %>
+		    	  <li class="nav-item">
+			        <a href="<%= root %>/user/index.jsp" class="nav-link link-body-emphasis">
+			          마이 페이지
+			        </a>
+			      </li>
 			      <li class="nav-item">
 			        <a href="<%= root %>/user/update.jsp" class="nav-link active" aria-current="page">
 			          회원정보 수정
 			        </a>
 			      </li>
+			      <% } %>
 			      <li>
 			        <a href="<%= root %>/user/order.jsp" class="nav-link link-body-emphasis">
 			          주문내역
@@ -234,7 +264,7 @@
 			let check = confirm('정말 탈퇴하시겠습니까?')
 
 			if( check ) {
-				form.action = 'remove.jsp'
+				form.action = 'delete_pro.jsp'
 				form.submit()
 			}
 

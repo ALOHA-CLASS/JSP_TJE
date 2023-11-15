@@ -1,0 +1,16 @@
+26-Sep-2023 21:09:35.982 정보 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent 프로덕션 환경들에서 최적의 성능을 제공하는, APR 기반 Apache Tomcat Native 라이브러리가, 다음 java.library.path에서 발견되지 않습니다: [/home/hosting_users/usr/local/fakechroot/lib/fakechroot:/usr/local/fakechroot/lib/fakechroot:/home/hosting_users/usr/lib:/home/hosting_users/lib:/usr/local/mysql/lib:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib]
+26-Sep-2023 21:09:36.032 정보 [main] org.apache.coyote.AbstractProtocol.init 프로토콜 핸들러 ["http-nio-8501"]을(를) 초기화합니다.
+26-Sep-2023 21:09:36.044 정보 [main] org.apache.catalina.startup.Catalina.load Initialization processed in 253 ms
+26-Sep-2023 21:09:36.062 정보 [main] org.apache.catalina.core.StandardService.startInternal 서비스 [joeun2708]을(를) 시작합니다.
+26-Sep-2023 21:09:36.062 정보 [main] org.apache.catalina.core.StandardEngine.startInternal 서버 엔진을 시작합니다: [Apache Tomcat/8.5.79]
+26-Sep-2023 21:09:36.071 정보 [joeun2708.cafe24.com-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR 웹 애플리케이션 아카이브 [/joeun2708/tomcat/webapps/ROOT.war]을(를) 배치합니다.
+26-Sep-2023 21:09:36.454 정보 [joeun2708.cafe24.com-startStop-1] org.apache.jasper.servlet.TldScanner.scanJars 적어도 하나의 JAR가 TLD들을 찾기 위해 스캔되었으나 아무 것도 찾지 못했습니다. 스캔했으나 TLD가 없는 JAR들의 전체 목록을 보시려면, 로그 레벨을 디버그 레벨로 설정하십시오. 스캔 과정에서 불필요한 JAR들을 건너뛰면, 시스템 시작 시간과 JSP 컴파일 시간을 단축시킬 수 있습니다.
+26-Sep-2023 21:09:36.631 정보 [joeun2708.cafe24.com-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR 웹 애플리케이션 아카이브 [/joeun2708/tomcat/webapps/ROOT.war]의 배치가 [560] 밀리초에 완료되었습니다.
+26-Sep-2023 21:09:36.632 정보 [joeun2708.cafe24.com-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [/joeun2708/tomcat/webapps/host-manager]을(를) 배치합니다.
+26-Sep-2023 21:09:36.782 정보 [joeun2708.cafe24.com-startStop-1] org.apache.jasper.servlet.TldScanner.scanJars 적어도 하나의 JAR가 TLD들을 찾기 위해 스캔되었으나 아무 것도 찾지 못했습니다. 스캔했으나 TLD가 없는 JAR들의 전체 목록을 보시려면, 로그 레벨을 디버그 레벨로 설정하십시오. 스캔 과정에서 불필요한 JAR들을 건너뛰면, 시스템 시작 시간과 JSP 컴파일 시간을 단축시킬 수 있습니다.
+26-Sep-2023 21:09:36.785 정보 [joeun2708.cafe24.com-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [/joeun2708/tomcat/webapps/host-manager]에 대한 배치가 [153] 밀리초에 완료되었습니다.
+26-Sep-2023 21:09:36.785 정보 [joeun2708.cafe24.com-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [/joeun2708/tomcat/webapps/manager]을(를) 배치합니다.
+26-Sep-2023 21:09:36.927 정보 [joeun2708.cafe24.com-startStop-1] org.apache.jasper.servlet.TldScanner.scanJars 적어도 하나의 JAR가 TLD들을 찾기 위해 스캔되었으나 아무 것도 찾지 못했습니다. 스캔했으나 TLD가 없는 JAR들의 전체 목록을 보시려면, 로그 레벨을 디버그 레벨로 설정하십시오. 스캔 과정에서 불필요한 JAR들을 건너뛰면, 시스템 시작 시간과 JSP 컴파일 시간을 단축시킬 수 있습니다.
+26-Sep-2023 21:09:36.928 정보 [joeun2708.cafe24.com-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [/joeun2708/tomcat/webapps/manager]에 대한 배치가 [143] 밀리초에 완료되었습니다.
+26-Sep-2023 21:09:36.929 정보 [main] org.apache.coyote.AbstractProtocol.start 프로토콜 핸들러 ["http-nio-8501"]을(를) 시작합니다.
+26-Sep-2023 21:09:36.936 정보 [main] org.apache.catalina.startup.Catalina.start Server startup in 891 ms

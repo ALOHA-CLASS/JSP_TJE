@@ -4,11 +4,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean id="productDAO" class="shop.dao.ProductRepository" />
+<%
+	String root = request.getContextPath(); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>  
@@ -19,15 +23,17 @@
 			<p class="lead mb-4">쇼핑몰 상품 목록 입니다.</p>
 			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
 			
-				<a href="add.jsp" class="btn btn-primary btn-lg px-4 gap-3">상품 등록</a>
-				<!-- [NEW] 상품 편집 버튼 추가 -->
-				<a href="editProducts.jsp" class="btn btn-success btn-lg px-4 gap-3">상품 편집</a>
+				<a href="<%= root %>/shop/add.jsp" class="btn btn-primary btn-lg px-4 gap-3">상품 등록</a>
+				<a href="<%= root %>/shop/editProducts.jsp" class="btn btn-success btn-lg px-4 gap-3">상품 편집</a>
+				<a href="<%= root %>/shop/cart.jsp" class="btn btn-warning btn-lg px-4 gap-3">장바구니</a>
 				
 			</div>
 		</div>
 	</div>
 	<%
-		List<Product> productList = productDAO.list(); 
+		String keyword = (String) request.getParameter("keyword");
+		keyword = keyword == null ? "" : keyword;
+		List<Product> productList = productDAO.list(keyword); 
 	%>
 	<div class="container mb-5">
 		<div class="row gy-4">
@@ -56,6 +62,12 @@
 			<%
 				}
 			%>
+			
+			<% if( productList.isEmpty() ) { %>
+					<div class="col text-center">
+						<p class="lead mb-4">조회된 상품 목록이 없습니다.</p>
+					</div>
+			<% } %>
 		</div>
 	</div>
 	<jsp:include page="/layout/footer.jsp" />

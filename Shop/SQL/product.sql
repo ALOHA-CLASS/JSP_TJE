@@ -1,6 +1,7 @@
 
 -- 상품 테이블
-DROP TABLE product;
+DROP TABLE IF EXISTS `product` CASCADE;
+
 CREATE TABLE product (
 	product_id varchar(100) NOT NULL COMMENT '상품ID',
 	name varchar(100) NOT NULL COMMENT '상품명',
@@ -16,13 +17,19 @@ CREATE TABLE product (
 ) COMMENT '상품';
 
 INSERT INTO product
-(product_id, name, unit_price, description, manufacturer, category, units_in_stock, `condition`)
-VALUES('P1001', 'Z플립5', 3000000, '삼성 갤럭시 Z플립', 'SAMSUNG', '스마트폰', 100, '새제품');
+(product_id, name, unit_price, description, manufacturer, category, units_in_stock, `condition`, file)
+VALUES('P100001', '자바 프로그래밍', 50000, '안녕하세요 자바프로그래밍 강의입니다.', '알로하클래스', '강의', 100, 'NEW', '/static/img/JAVA.jpg');
 
-INSERT INTO joeun.product
-(product_id, name, unit_price, description, manufacturer, category, units_in_stock, `condition`)
-VALUES('P1002', '아이폰14', 2000000, '아이폰 X 뉴진스', 'Apple', '스마트폰', 100, '새제품');
+INSERT INTO product
+(product_id, name, unit_price, description, manufacturer, category, units_in_stock, `condition`, file)
+VALUES('P100002', '오라클 데이터베이스', 20000, '오라클 데이터베이스 입니다.', '알로하클래스', '강의', 100, 'NEW', '/static/img/DB.jpg');
 
-INSERT INTO joeun.product
-(product_id, name, unit_price, description, manufacturer, category, units_in_stock, `condition`)
-VALUES('P1003', '아이패드', 2500000, '아이패드 13인치', 'Apple', '태플릿PC', 100, '새제품');
+
+INSERT INTO product
+(product_id, name, unit_price, description, manufacturer, category, units_in_stock, `condition`, file)
+VALUES('P100003', 'HTML CSS JAVASCRIPT', 15000, '웹 기초 강의입니다.', '알로하클래스', '강의', 100, 'NEW', '/static/img/WEB.jpg');
+
+
+INSERT INTO product
+(product_id, name, unit_price, description, manufacturer, category, units_in_stock, `condition`, file)
+VALUES('P100004', 'JSP', 80000, 'JSP 강의입니다.', '알로하클래스', '강의', 100, 'NEW', '/static/img/JSP.jpg');

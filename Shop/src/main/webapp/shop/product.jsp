@@ -8,7 +8,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>  
@@ -19,7 +20,6 @@
 			<p class="lead mb-4">Shop 쇼핑몰 입니다.</p>
 			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
 				<a href="./products.jsp" class="btn btn-primary btn-lg px-4 gap-3">상품목록</a>
-				<button type="button" class="btn btn-outline-secondary btn-lg px-4">로그인</button>
 			</div>
 		</div>
 	</div>
@@ -55,6 +55,10 @@
 			 			<td><%= product.getCategory()  %></td>
 			 		</tr>
 			 		<tr>
+			 			<td>상태 :</td>
+			 			<td><%= product.getCondition()  %></td>
+			 		</tr>
+			 		<tr>
 			 			<td>재고 수 :</td>
 			 			<td><%= product.getUnitsInStock()  %></td>
 			 		</tr>
@@ -63,13 +67,7 @@
 			 			<td><%= product.getUnitPrice() %></td>
 			 		</tr>
 				</table>
-<%-- 				<p>상품ID : <%= product.getProductId() %>	</p> --%>
-<%-- 				<p>제조사 : <%= product.getManufacturer()  %></p> --%>
-<%-- 				<p>분류 : <%= product.getCategory()  %></p> --%>
-<%-- 				<p>재고 수 : <%= product.getUnitsInStock()  %></p> --%>
-<%-- 				<h4>가격 : <%= product.getUnitPrice() %> 원</h4> --%>
 				<div class="mt-4">
-<%-- 					<form name="addForm" action="./addCart.jsp?id=<%= product.getProductId() %>" method="get"> --%>
 					<form name="addForm" action="./addCart.jsp" method="post">
 						<input type="hidden" name="id" value="<%= product.getProductId() %>" />
 						<div class="btn-box d-flex justify-content-end ">

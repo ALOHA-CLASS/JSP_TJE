@@ -44,6 +44,57 @@ public class ProductRepository extends JDBConnection {
 		return productList; 
 	}
 	
+	
+	/**
+	 * 상품 목록 검색
+	 * @param keyword
+	 * @return
+	 */
+	public List<Product> list(String keyword) {
+		
+		ArrayList<Product> productList = new ArrayList<Product>();
+		
+		String sql = " SELECT * "
+				   + " FROM product "
+				   + " WHERE 1 = 1"
+				   + "   AND ("
+				   + "			name LIKE CONCAT('%', ?, '%') "
+				   + "       OR description LIKE CONCAT('%', ?, '%')  "
+				   + "       OR manufacturer LIKE CONCAT('%', ?, '%')  "
+				   + "       OR category LIKE CONCAT('%', ?, '%')  "
+				   + "       ) ";
+		
+		int no = 1;
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(no++, keyword);
+			psmt.setString(no++, keyword);
+			psmt.setString(no++, keyword);
+			psmt.setString(no++, keyword);
+			rs = psmt.executeQuery();
+			
+			while( rs.next() ) {
+				Product product = new Product();
+				
+				product.setProductId( rs.getString("product_id") );
+				product.setName( rs.getString("name") );
+				product.setUnitPrice( rs.getInt("unit_price") );
+				product.setDescription( rs.getString("description") );
+				product.setManufacturer( rs.getString("manufacturer") );
+				product.setCategory( rs.getString("category") );
+				product.setUnitsInStock( rs.getLong("units_in_stock") );
+				product.setCondition( rs.getString("condition") );
+				
+				productList.add(product);
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("상품 목록 조회 시, 에러 발생");
+			e.printStackTrace();
+		}
+		return productList; 
+	}
+	
 	/**
 	 * 상품 조회
 	 * @param productId
@@ -137,15 +188,17 @@ public class ProductRepository extends JDBConnection {
 		
 		int no = 1;
 		
-		long unit = 0;
+		long unit = product.getUnitsInStock();
+		
+		String type = product.getType();
 		
 		// 입고
-		if( product.getType().equals("IN") ) {
-			unit = product.getUnitsInStock() + product.getQuantity();
+		if( type != null && type.equals("IN") ) {
+			unit = unit + product.getQuantity();
 		}
 		// 출고
-		if( product.getType().equals("OUT") ) {
-			unit = product.getUnitsInStock() - product.getQuantity();
+		if(  type != null && type.equals("OUT") ) {
+			unit = unit - product.getQuantity();
 		}
 		product.setUnitsInStock(unit);
 		

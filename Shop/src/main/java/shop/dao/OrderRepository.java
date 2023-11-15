@@ -1,8 +1,11 @@
 package shop.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import shop.dto.Order;
+import shop.dto.Product;
 
 public class OrderRepository extends JDBConnection {
 	
@@ -66,9 +69,135 @@ public class OrderRepository extends JDBConnection {
 		}
 		return orderNo;
 	}
+
 	
+	/**
+	 * 주문 내역 조회 - 회원
+	 * @param userId
+	 * @return
+	 */
+	public List<Product> list(String userId) {
+		ArrayList<Product> productList = new ArrayList<Product>();
+		
+		String sql = " select o.order_no "
+				   + "	     ,o.phone "
+				   + "       ,o.order_pw "
+				   + "       ,io.product_id "
+				   + "       ,io.amount "
+				   + "       ,p.* "
+				   + " from `order` o left join product_io io on o.order_no  = io.order_no "
+				   + "			      left join product p on p.product_id = io.product_id "
+				   + " where o.user_id = ? "
+				   ;
+		
+		int no = 1;
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(no++, userId);
+			rs = psmt.executeQuery();
+			
+			while( rs.next() ) {
+				Product product = new Product();
+				
+				product.setOrderNo( rs.getInt("order_no") );
+				product.setProductId( rs.getString("product_id") );
+				product.setName( rs.getString("name") );
+				product.setUnitPrice( rs.getInt("unit_price") );
+				product.setDescription( rs.getString("description") );
+				product.setManufacturer( rs.getString("manufacturer") );
+				product.setCategory( rs.getString("category") );
+				product.setUnitsInStock( rs.getLong("units_in_stock") );
+				product.setCondition( rs.getString("condition") );
+				product.setQuantity( rs.getInt("amount") );
+				
+				productList.add(product);
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("상품 목록 조회 시, 에러 발생");
+			e.printStackTrace();
+		}
+		return productList; 
+		
+	}
+	
+	/**
+	 * 주문 내역 조회 - 비회원
+	 * @param phone
+	 * @param orderPw
+	 * @return
+	 */
+	public List<Product> list(String phone, String orderPw) {
+		ArrayList<Product> productList = new ArrayList<Product>();
+				
+		String sql = " select o.order_no "
+				   + "	     ,o.phone "
+				   + "       ,o.order_pw "
+				   + "       ,io.product_id "
+				   + "       ,io.amount "
+				   + "       ,p.* "
+				   + " from `order` o left join product_io io on o.order_no  = io.order_no "
+				   + "			      left join product p on p.product_id = io.product_id "
+				   + " where o.phone = ? "
+				   + "   and o.order_pw = ? "
+				   ;
+		
+		int no = 1;
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(no++, phone);
+			psmt.setString(no++, orderPw);
+			rs = psmt.executeQuery();
+			
+			while( rs.next() ) {
+				Product product = new Product();
+				
+				product.setOrderNo( rs.getInt("order_no") );
+				product.setProductId( rs.getString("product_id") );
+				product.setName( rs.getString("name") );
+				product.setUnitPrice( rs.getInt("unit_price") );
+				product.setDescription( rs.getString("description") );
+				product.setManufacturer( rs.getString("manufacturer") );
+				product.setCategory( rs.getString("category") );
+				product.setUnitsInStock( rs.getLong("units_in_stock") );
+				product.setCondition( rs.getString("condition") );
+				product.setQuantity( rs.getInt("amount") );
+				productList.add(product);
+			} 
+			
+		} catch (SQLException e) {
+			System.err.println("상품 목록 조회 시, 에러 발생");
+			e.printStackTrace();
+		}
+		return productList; 
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

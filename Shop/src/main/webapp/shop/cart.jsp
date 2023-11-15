@@ -7,7 +7,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Shop</title>
+	
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
@@ -64,7 +65,7 @@
 					<td><%= product.getUnitPrice() %></td>			
 					<td><%= product.getQuantity() %></td>			
 					<td><%= total %></td>			
-					<td><a href="removeCart.jsp?id=<%= product.getProductId() %>" class="btn btn-danger">삭제</a></td>			
+					<td><a href="deleteCart.jsp?id=<%= product.getProductId() %>" class="btn btn-danger">삭제</a></td>			
 				</tr>
 				<%
 					}
@@ -93,7 +94,7 @@
 	
 		<!-- 버튼 영역 -->
 		<div class="d-flex justify-content-between align-items-center p-3">
-			<a href="removeCart.jsp?cartId=<%= cartId %>" class="btn btn-lg btn-danger ">전체삭제</a>
+			<a href="deleteCart.jsp?cartId=<%= cartId %>" class="btn btn-lg btn-danger ">전체삭제</a>
 <%-- 			<a href="ship.jsp?cartId=<%= cartId %>" class="btn btn-lg btn-primary">주문하기</a> --%>
 			<a href="javascript:;" class="btn btn-lg btn-primary" onclick="order()">주문하기</a>
 		</div>

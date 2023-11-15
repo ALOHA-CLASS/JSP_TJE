@@ -1,3 +1,4 @@
+<%@page import="java.util.UUID"%>
 <%@page import="java.io.File"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
@@ -11,7 +12,12 @@
 	request.setCharacterEncoding("UTF-8");
  
 	// [NEW] - 파일 업로드 추가 
-	String path = "E:\\TJE\\UPLOAD";
+	// String path = "E:\\TJE\\UPLOAD";
+	ServletContext context = getServletContext();
+	String rootPath = context.getRealPath("/");
+	String path = rootPath + "/UPLOAD";
+// 	String path = "/UPLOAD";
+	
 	
 	DiskFileUpload upload = new DiskFileUpload();
 	
@@ -42,7 +48,9 @@
 				case "manufacturer" 	: product.setManufacturer( value );  break;
 				case "category" 		: product.setCategory( value );  break;
 				case "unitsInStock" 	: product.setUnitsInStock( value.isEmpty() ? 0 : Integer.parseInt(value) );  break;
-				case "condition" 		: product.setCondition( value );  break;
+				case "condition" 		: product.setCondition( value );
+										  out.print("condition : " + value);
+										  break;
 			}
 		}
 		// 파일 데이터
@@ -50,6 +58,8 @@
 			String fileName = item.getName();
 			
 			if( item == null || fileName == null || fileName == "" ) continue;	// 이미지 없이 업로드한 경우 null 체크
+			
+			fileName = UUID.randomUUID().toString().substring(0, 11) + "_" + fileName;
 			File fileObj = new File(path + "/" + fileName);
 			item.write(fileObj);			// 파일 저장
 			file = fileObj.getPath();		
@@ -81,7 +91,7 @@
 // 	product.setCondition(condition);
 
 	int result = productDAO.insert(product);		// 상품 데이터 등록
-	 
+	
 	response.sendRedirect("products.jsp");			// 상품 목록으로 이동
 %>
 

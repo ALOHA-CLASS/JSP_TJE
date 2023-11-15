@@ -1,3 +1,4 @@
+<%@page import="shop.dao.OrderRepository"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="shop.dto.Product"%>
 <%@page import="java.util.List"%>
@@ -9,7 +10,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Shop</title>
+	
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
@@ -17,16 +19,25 @@
 		String root = request.getContextPath();
 		String loginId = (String) session.getAttribute("loginId");
 		String orderPhone = (String) session.getAttribute("orderPhone");
+		
 		boolean login = false;
 		if( loginId != null && !loginId.isEmpty() ) {
-			// response.sendRedirect(root);
+			// response.sendRedirect(root + "/");
 			login = true;
 		}
-		// 장바구니 목록을 세션에서 가져오기
 		
-		List<Product> cartList = (List<Product>) session.getAttribute("cartList");
-		if( cartList == null ) cartList = new ArrayList<Product>();
-		int cartCount = cartList.size();
+		// 주문내역 목록을 세션에서 가져오기
+		List<Product> orderList = (List<Product>) session.getAttribute("orderList");
+		
+		int orderCount = orderList != null && !orderList.isEmpty() ? orderList.size() : 0;
+		
+		// 회원인 경우
+		OrderRepository orderDAO = new OrderRepository();
+		if( (orderList == null || orderList.size() == 0  ) && login ) {
+			orderList = orderDAO.list(loginId);
+			orderCount = orderList.size();
+		}
+		
 	%>
 	
 	<jsp:include page="/layout/header.jsp" />
@@ -37,6 +48,11 @@
 			    <ul class="nav nav-pills flex-column mb-auto">
 			      <!-- 로그인 시 -->
 			      <% if( login ) { %>
+			      <li class="nav-item">
+			        <a href="<%= root %>/user/index.jsp" class="nav-link link-body-emphasis">
+			          마이 페이지
+			        </a>
+			      </li>
 			      <li class="nav-item">
 			        <a href="<%= root %>/user/update.jsp" class="nav-link link-body-emphasis">
 			          회원정보 수정
@@ -66,31 +82,35 @@
 			
 			<!-- 주문 내역 영역 -->
 			<div class="container shop m-auto mb-5">
-			
-				<form action="<%= root %>/user/order_pro.jsp" method="post">
-				<% if( !login ) { %>
-						<table class="table">
-							<tr>
-								<td>전화번호 :</td>
-								<td>
-									<input type="text" class="form-control" name="orderPw" placeholder="- 생략하고 숫자만 입력해주세요.">
-								</td>
-							</tr>
-							<tr>
-								<td>주문 비밀번호 :</td>
-								<td>
-									<input type="password" class="form-control" name="orderPw" >
-								</td>
-							</tr>
-						</table>
-				<% } %>
-				</form>
-				
-				<% if( login || ( orderPhone != null && orderPhone.isEmpty() ) ) { %>
+					<form action="<%= root %>/user/order_pro.jsp" method="post">
+					<% if( !login ) { %>
+						<div class="mb-5">
+							<table class="table">
+								<tr>
+									<td>전화번호 :</td>
+									<td>
+										<input type="text" class="form-control" name="phone" placeholder="- 생략하고 숫자만 입력해주세요.">
+									</td>
+								</tr>
+								<tr>
+									<td>주문 비밀번호 :</td>
+									<td>
+										<input type="password" class="form-control" name="orderPw" placeholder="주문 비밀번호를 입력해주세요.">
+									</td>
+								</tr>
+							</table>
+							<div class="btn-box d-grid gap-2">
+								<button type="submit" class="btn btn-outline-primary btn-lg px-4 gap-3">조회</button>
+							</div>
+						</div>
+					<% } %>
+					</form>
+				<% if( login || ( orderPhone != null && !orderPhone.isEmpty() ) ) { %>
 				<!-- 주문 내역 목록 -->
 				<table class="table table-striped table-hover table-bordered text-center align-middle">
 					<thead>
 						<tr class="table-primary">
+							<th>주문번호</th>
 							<th>상품</th>
 							<th>가격</th>
 							<th>수량</th>
@@ -101,17 +121,18 @@
 					<tbody>
 						<%
 							int sum = 0;
-							for(int i = 0 ; i < cartList.size() ; i++) {
-								Product product = cartList.get(i);
+							for(int i = 0 ; i < orderCount ; i++) {
+								Product product = orderList.get(i);
 								int total = product.getUnitPrice() * product.getQuantity();
 								sum += total;
 						%>
 						<tr>
+							<td><%= product.getOrderNo() %></td>			
 							<td><%= product.getName() %></td>			
 							<td><%= product.getUnitPrice() %></td>			
 							<td><%= product.getQuantity() %></td>			
 							<td><%= total %></td>			
-							<td><a href="removeCart.jsp?id=<%= product.getProductId() %>" class="btn btn-danger">삭제</a></td>			
+							<td></td>			
 						</tr>
 						<%
 							}
@@ -119,10 +140,10 @@
 					</tbody>
 					<tfoot>
 						<%
-							if( cartList.isEmpty() ) {
+							if( orderList.isEmpty() ) {
 						%>
 						<tr>
-							<td colspan="5">추가된 상품이 없습니다.</td>	
+							<td colspan="6">추가된 상품이 없습니다.</td>	
 						</tr>
 						<% } else { %>
 						<tr>
@@ -184,7 +205,7 @@
 			let check = confirm('정말 탈퇴하시겠습니까?')
 
 			if( check ) {
-				form.action = 'remove.jsp'
+				form.action = 'delete.jsp'
 				form.submit()
 			}
 

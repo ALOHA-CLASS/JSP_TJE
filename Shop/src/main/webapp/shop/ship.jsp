@@ -5,7 +5,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Shop</title>
+	
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
@@ -88,7 +89,7 @@
 				<div class="item">
 					<a href="cart.jsp" class="btn btn-lg btn-success">이전</a>
 					<!-- 취소 프로세스는 이어서... -->				
-					<a href="" class="btn btn-lg btn-danger">취소</a>				
+					<a href="<%= root %>/" class="btn btn-lg btn-danger">취소</a>				
 				</div>
 				<div class="item">
 					<input type="submit" class="btn btn-lg btn-primary" value="등록" />

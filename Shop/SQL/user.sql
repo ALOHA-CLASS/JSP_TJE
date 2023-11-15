@@ -1,4 +1,5 @@
 -- 회원 테이블
+DROP TABLE IF EXISTS `user` CASCADE;
 create table `user` (
 	id varchar(10) not null COMMENT '회원 아이디',		-- 회원 아이디
 	password varchar(10) not null COMMENT '비밀번호',	-- 비밀번호
@@ -11,3 +12,5 @@ create table `user` (
 	regist_day timestamp default now() COMMENT '가입일자',		-- 가입일자
 	primary key(id)
 ) COMMENT '회원';
+
+INSERT INTO `user` (id, password, name) VALUES ('joeun', '123456', '김조은');

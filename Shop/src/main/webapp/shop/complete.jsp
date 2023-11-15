@@ -12,7 +12,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Shop</title>
+	
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
@@ -70,6 +71,7 @@
 		// 회원 주문처리
 		if( login ) {
 			// out.print("회원 주문 처리...");
+			order.setUserId(loginId);
 		}
 		// 비회원 주문처리
 		else {
@@ -163,6 +165,10 @@
 					<td><%= ship_addressName  %></td>
 				</tr>
 			</table>
+			
+			<div class="btn-box d-flex justify-content-center">
+				<a href="<%= root %>/user/order.jsp" class="btn btn-primary btn-lg px-4 gap-3">주문내역</a>
+			</div>
 		</div>
 	</div>
 	

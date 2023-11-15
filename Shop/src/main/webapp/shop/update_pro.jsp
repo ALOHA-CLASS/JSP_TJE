@@ -12,7 +12,11 @@
 	request.setCharacterEncoding("UTF-8");
  
 	// [NEW] - 파일 업로드 추가 
-	String path = "E:\\TJE\\UPLOAD";
+	// String path = "E:\\TJE\\UPLOAD";
+	ServletContext context = getServletContext();
+	String rootPath = context.getRealPath("/");
+	String path = rootPath + "/UPLOAD";
+// 	String path = "/UPLOAD";
 	
 	DiskFileUpload upload = new DiskFileUpload();
 	
@@ -97,15 +101,21 @@
 	} 
 	// 새로운 이미지를 업로드하지 않은 경우
 	else {
-		// 파일 경로를 기존 파일로 유지 
-		product.setFile( oldProduct.getFile() );
+		// 파일 경로를 기존 파일로 유지
+		String oldFilePath = oldProduct.getFile(); 
+		if( oldFilePath == null || oldFilePath.isEmpty() ) {
+			oldFilePath = "";
+		}
+		product.setFile( oldFilePath );
 	}
  
+	out.print(product.getUnitsInStock());
+	
 	int result = productDAO.update(product);		// 상품 데이터 수정
 	String productId = product.getProductId();
 	
 	if( result > 0 ) {
-		// response.sendRedirect("editProducts.jsp");			// 상품 편집 목록으로 이동
+// 		response.sendRedirect("editProducts.jsp");			// 상품 편집 목록으로 이동
 		response.sendRedirect("product.jsp?id=" + productId);	// 상품 상세 화면으로 이동
 	} else {
 		response.sendRedirect("update.jsp?id=" + productId);	// 상품 수정 화면으로 이동

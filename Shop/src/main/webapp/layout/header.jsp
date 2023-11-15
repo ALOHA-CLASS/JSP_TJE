@@ -10,11 +10,13 @@
 	String root = request.getContextPath();
 	
 	String loginId = (String) session.getAttribute("loginId");
+	String keyword = request.getParameter("keyword");
+	keyword = keyword == null ? "" : keyword;
 	
 %>
 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<%= root %>">Home</a>
+    <a class="navbar-brand" href="<%= root %>/">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -52,6 +54,7 @@
 	        <strong><%= loginId %></strong>
 	      </a>
 	      <ul class="dropdown-menu text-small shadow">
+	        <li><a class="dropdown-item" href="<%= root %>/user/index.jsp">마이 페이지</a></li>
 	        <li><a class="dropdown-item" href="<%= root %>/user/update.jsp">회원정보 수정</a></li>
 	        <li><a class="dropdown-item" href="<%= root %>/user/order.jsp">주문내역</a></li>
 	        <li><hr class="dropdown-divider"></li>
@@ -74,8 +77,9 @@
 	        </a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="d-flex" role="search" action="<%= root %>/shop/products.jsp" method="get">
+        <input class="form-control me-2" type="search" name="keyword" placeholder="Search" aria-label="Search"
+        		value="<%= keyword %>">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>

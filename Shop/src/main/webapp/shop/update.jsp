@@ -7,7 +7,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>  
@@ -30,10 +31,15 @@
 	</div>
 	
 	<!-- 상품 수정 입력 화면 -->
-	<div class="container">
+	<div class="container shop">
 		<!-- [NEW] enctype 추가 -->
 		<form name="product" action="./update_pro.jsp" onsubmit="return checkProduct()" method="post" enctype="multipart/form-data">
 			
+			<div class="input-group mb-3 row">
+				<img src="img?id=<%= product.getProductId() %>" class="w-100 p-2" />
+			</div>
+			
+				
 			<div class="input-group mb-3 row">
 				<label class="input-group-text col-md-2" id="">상품 이미지</label>
 				<input type="file" class="form-control col-md-10" name="file">
@@ -83,17 +89,17 @@
 				<div class="col-md-10 d-flex align-items-center">
 					<div class="radio-box d-flex">
 						<div class="radio-item mx-5">
-							<input type="radio" class="form-check-input" name="codition" value="NEW" id="condition-new"> 
+							<input type="radio" class="form-check-input" name="condition" value="NEW" id="condition-new"> 
 							<label for="condition-new">신규 제품</label>
 						</div>
 						
 						<div class="radio-item mx-5">
-							<input type="radio" class="form-check-input " name="codition" value="OLD" id="condition-old"> 
+							<input type="radio" class="form-check-input " name="condition" value="OLD" id="condition-old"> 
 							<label for="condition-old">중고 제품</label>
 						</div>
 						
 						<div class="radio-item mx-5">
-							<input type="radio" class="form-check-input " name="codition" value="RE" id="condition-re"> 
+							<input type="radio" class="form-check-input " name="condition" value="RE" id="condition-re"> 
 							<label for="condition-re">재생 제품</label>
 						</div>
 					</div>
@@ -113,6 +119,15 @@
 	<jsp:include page="/layout/footer.jsp" />
 	<jsp:include page="/layout/script.jsp" />
 	
+	
+	<script>
+		
+		// 상태 라디오 버튼 체크
+		let condition = '<%= product.getCondition() %>'
+		let radioCondition = document.querySelector('[value="' + condition +'"]');
+		radioCondition.checked = true
+	
+	</script>	
 </body>
 </html>
 

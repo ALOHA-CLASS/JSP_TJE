@@ -4,7 +4,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Shop</title>
+	
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
@@ -19,7 +20,7 @@
 		<div class="col-lg-6 mx-auto">
 			<p class="lead mb-4"><span id="time"></span> 초 후 메인 화면으로 이동합니다.</p>
 			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-				<a href="<%= request.getContextPath() %>" class="btn btn-lg btn-primary">메인 화면</a>
+				<a href="<%= request.getContextPath() %>/" class="btn btn-lg btn-primary">메인 화면</a>
 				<a href="<%= root %>/user/logout.jsp" class="btn btn-outline-danger btn-lg px-4">로그아웃</a>
 			</div>
 		</div>
@@ -36,7 +37,7 @@
 		
 		function stopAfter5Seconds() {
 		  // 5초 후에 동작을 중지합니다.
-		  location.href = root
+		  location.href = root + "/"
 		  clearInterval(timer);
 		}
 		

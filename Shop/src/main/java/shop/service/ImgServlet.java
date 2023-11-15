@@ -51,6 +51,11 @@ public class ImgServlet extends HttpServlet {
 			file = imgPath + "/no-image.jpg";
 		}
 		
+		if( file.contains("static/img") ) {
+			String rootPath = context.getRealPath("/");
+			file = rootPath + "/" + file;
+		}
+		
 		String ext = file.substring( file.lastIndexOf(".") + 1 ).toUpperCase();
 		System.out.println("확장자 : " + ext);
 		
@@ -83,7 +88,6 @@ public class ImgServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

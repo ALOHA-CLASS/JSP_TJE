@@ -25,6 +25,7 @@
 	// 로그인 성공
 	// - 세션에 아이디 등록
 	session.setAttribute("loginId", id);
+	session.setAttribute("orderList", null);
 	
 	String rememberId = request.getParameter("remember-id");		// 아이디 저장 파라미터
 	String rememberMe = request.getParameter("remember-me");		// 자동 로그인 파라미터

@@ -16,7 +16,7 @@
 			<h5>요청 경로를 확인해주세요.</h5>
 			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
 				<!-- a 태그 버튼 -->
-				<a href="<%= request.getContextPath() %>" class="btn btn-primary btn-lg px-4 gap-3">메인 화면</a>
+				<a href="<%= request.getContextPath() %>/" class="btn btn-primary btn-lg px-4 gap-3">메인 화면</a>
 			</div>
 		</div>
 	</div>

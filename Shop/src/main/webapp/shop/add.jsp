@@ -7,7 +7,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	
+	<jsp:include page="/layout/meta.jsp" />
 	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>  
@@ -20,7 +21,7 @@
 	</div>
 	
 	<!-- 상품 등록 입력 화면 -->
-	<div class="container">
+	<div class="container shop">
 		<!-- [NEW] enctype 추가 -->
 		<form name="product" action="./add_pro.jsp" onsubmit="return checkProduct()" method="post" enctype="multipart/form-data">
 			
@@ -68,17 +69,17 @@
 				<div class="col-md-10 d-flex align-items-center">
 					<div class="radio-box d-flex">
 						<div class="radio-item mx-5">
-							<input type="radio" class="form-check-input" name="codition" value="NEW" id="condition-new"> 
+							<input type="radio" class="form-check-input" name="condition" value="NEW" id="condition-new"> 
 							<label for="condition-new">신규 제품</label>
 						</div>
 						
 						<div class="radio-item mx-5">
-							<input type="radio" class="form-check-input " name="codition" value="OLD" id="condition-old"> 
+							<input type="radio" class="form-check-input " name="condition" value="OLD" id="condition-old"> 
 							<label for="condition-old">중고 제품</label>
 						</div>
 						
 						<div class="radio-item mx-5">
-							<input type="radio" class="form-check-input " name="codition" value="RE" id="condition-re"> 
+							<input type="radio" class="form-check-input " name="condition" value="RE" id="condition-re"> 
 							<label for="condition-re">재생 제품</label>
 						</div>
 					</div>
